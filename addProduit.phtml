@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <meta charset='utf-8'> 
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        
+    </head>
+    <body>
+    <h1>
+        Ajout Produit
+    </h1>
+    <div class="container">
+
+    <form action="<?=$_SERVER['PHP_SELF']?>" enctype="multipart/form-data" method="POST" >
+        <fieldset>
+
+            <div>
+       
+                <div class="form-group row">
+                <label  class="col-sm-2 col-form-label"> Nom Produit </label>
+                <div class="col-sm-2">
+                <input type="text" name="nom"  placeholder="Entez nom produit">
+                </div>
+                </div>
+
+                <div class="form-group row">
+                <label  class="col-sm-2 col-form-label"> Description produit</label>
+                <div class="col-sm-2" name="description">                
+                <textarea  placeholder="ecrivez quelque chose ici" name="description"></textarea>
+                </div>
+                </div>
+
+                <div class="form-group row">
+                <label for="pp" class="col-sm-2 col-form-labe" > Prix Produit</label>
+                <div class="col-sm-2"  name="prix">                
+                <input type="text"  placeholder="ecrivez quelque chose ici" name="prix" >
+                </div>
+                </div>
+
+                <div class="form-group row">
+                <label  class="col-sm-2 col-form-label">Categorie</label>
+                <div class="col-sm-2"  name="categorie">                
+
+                <select name="categorie">
+                    <?php foreach ($categories as $categorie): ?>
+                    <option value="<?=$categorie['id'] ?>"><?=$categorie['nom'] ?></option>
+                    <?php endforeach ; ?>
+                </select>
+                
+                </div>
+                </div>
+                
+                <div class="form-group row">
+                <label for="pp" class="col-sm-2 col-form-label" >Image du produit </label>
+                <div class="col-sm-2"  name="image">     
+            
+                <input  type="file" name="image" id="image" accept="*/image" class="form-control-file" >
+                </div>
+                </div>
+
+               
+                <div class="form-group row">
+                <div class="offset-sm-2 col-sm-10">
+                <input type="submit" value="ADD " name="submit" class="btn btn-primary" value="<?=$msg?>"/>
+                <input type="reset"  class="btn btn-danger" value="Rest">
+                </div>
+                </div>
+               </div>
+              
+        </fieldset>
+
+    </form>
+    
+    </div>
+    </body>
+</html>
