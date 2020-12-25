@@ -3,7 +3,23 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
 
+        body
+        {
+            font-family:'Poppins',sans-serif;
+            background:linear-gradient(to right ,#cbb4d4,#20002c);
+            position:center;
+        }
+        h1{
+        color:white;
+        text-transform:uppercase;
+        } 
+    
+
+    </style>
 </head>
 <body>
 <?php require_once("menu.php") ?>
@@ -21,8 +37,6 @@
     <?php endif ?>    
 
    <h1>Liste des Produits </h1>
- 
-
     <br>
    <table class="table table-striped table-hover table-bordered" >
         <thead class="bg-dark text-white">
@@ -44,7 +58,7 @@
 
             <?php foreach ($produits as $produit):?>
             <tr>
-            <td scopte="row"> <input type="checkbox" name="deletetask[]">
+            <td scopte="row"> <input type="checkbox" name="deleteMulti[]">
             </td>
                 <td scope="row">
                     <?= $produit['id']?>
