@@ -3,34 +3,87 @@
 <head>
 <meta charset="utf-8"> 
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+    body
+    {
+        font-family:'Poppins',sans-serif;
+        background:linear-gradient(to right ,#20002c,#cbb4d4);
+        position:center;
+    }
+    
+    .container{
+        
+        right:20px;
+        top:60px;
+        left:50%;
+        font-size:25px;
+        cursor:pointer;
+        width:350px;
+        padding:20px;
+        border-radius:4px;
+        background:rgba(255,255,255,0.25);
+        border:1px solid rgba(255,255,255,0.18);
+        
+    }
+    h1{
+        text-align:center;
+        color:white;
+        text-transform:uppercase;
+    } 
+    form{
+        margin:40px;
+    }
+    label{
+        display:block;
+        color:white;
+        font-size:18px;
+        margin-top:20px;
+    }
+    button{
+        display:block;
+        width:150px;
+        padding:8px;
+        border:none;
+        outline:none;
+        background:linear-gradient(to right ,#cbb4d4,#20002c);
+        color:white;
+        font-size:20px;
+        cursor:pointer;
+
+    }
+    
+    </style>
 
 </head>
 
 <body>
-
-    <form action="<?=$_SERVER['PHP_SELF']?>" method="post" >
-    <div class="form-group">
-        <label class=" col-sm-2 col-form-label">Login</label>
-        <div class="col-sm-2">
-        <input type="text" name="login" class="form-control form-control-lg">
-        </div>
-        </div>
-
-        
-
+    <div class="container">
+        <h1>Bienvenue</h1>
+        <form action="<?=$_SERVER['PHP_SELF']?>" method="post" >
         <div class="form-group">
-        
-        <label class=" col-sm-2 col-form-label">PASSWORD</label>
-        <div class="col-sm-2">
-        <input type="password" name="pwd" class="form-control form-control-lg">
+            <label class=" col-sm-4 col-form-label">Login</label>
+                <div class="col-sm-12">
+                    <input type="text" name="login" class="form-control form-control-lg" >
+                </div>
         </div>
+
+        <div class="form-group">        
+            <label class=" col-sm-4 col-form-label">PASSWORD</label>
+                <div class="col-sm-12">
+                    <input type="password" name="pwd" class="form-control form-control-lg">
+                </div>
         </div> 
 
         <div class=" col-sm-10 col-form" >        
-        <input type="submit" value="Connexion" class="btn btn-primary">
-        </div>
+            <button type="submit"  class="btn btn-primary">Connexion</button>
+        </div>        
 
-    </form>
+        </form>
+    </div>
+    
+
 
 </body>
 </html>
