@@ -21,16 +21,23 @@ session_start();
             $edit_images=$_FILES['fileimage']['name'];
             var_dump($edit_images);
             $tmp=$_FILES['fileimage']['tmp_name'];
+            $imageSize=$_FILES['fileimage']['size'];
+            $folder='upload/';
+            $imgExt=strtolower(pathinfo($edit_images,PATHINFO_EXTENSION));
+            $valid_extensions=rand(1000,1000000).".".$edit_images;
+            move_uploaded_file($tmp, $folder.$edit_images); 
+
 
             
             
             $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql1="UPDATE `produits` SET `nom`='$nom',`description`='$description',`prix`=$prix,`image`='$edit_images',`categories_id`=$categorie WHERE id=$id;";
+            $sql1="UPDATE `produits` SET `nom`='$nom',`description`='$description',`prix`=$prix,`image`='$edit_images',`categories_id`=? WHERE id=$id;";
             $q = $pdo->prepare($sql1);
-            
-            if ($q)
+            var_dump($q);
+
+              if ($q)
             {
-                move_uploaded_file( $_FILES['fileimage'] ['tmp_name'], "upload/".$_FILES['fileimage']['name']); 
+                move_uploaded_file($tmp, $folder.$edit_images); 
                 
             }
         
@@ -52,6 +59,7 @@ session_start();
         $nom=$produit['nom'];
         $description=$produit['description'];
         $prix=$produit['prix'];
+        $edit_images=$produit['image'];
         
         }
 
