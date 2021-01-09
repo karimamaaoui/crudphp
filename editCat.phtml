@@ -3,11 +3,35 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
+
+        body
+        {
+            font-family:'Poppins',sans-serif;
+            background:linear-gradient(to right ,#cbb4d4,#20002c);
+            position:center;
+        }
+        h1{
+        color:white;
+        text-transform:uppercase;
+        } 
+        .default:hover {
+            background: #ff9800;
+            color: white;
+        }
+        input[type="checkbox"] {
+		transform:scale(1.5, 1.5);
+    }
+
+    </style>
 
 </head>
 <body>
+<?php require_once("menu.php") ?>
 <h1>Mise à jour des Categories </h1>
-
+<br>
 <div class="container">
 
 <form action="editCat.php?id=<?php echo $id?>" method="POST">
@@ -29,24 +53,8 @@
     </div>
 
     <div class="form-group row">
-        <label class="col-sm-2 col-form-label" >Image du produit </label>
-        <div class="col-sm-2"  name="picture">  
-        <input class="input-group" type="file" name="picture" accept="image/*d" />
-
-        
-        </div>
-    </div>
-
-   
-
-
-
-
-
-
-    <div class="form-group row">
          <div class="offset-sm-2 col-sm-10">
-         <button type="submit" class="btn btn-success" name="Update"><i class="fa fa-save"></i> Edit</button>
+         <button type="submit" class="btn btn-success" name="Update"><i class="fa fa-save"></i> Editer</button>
 
         </div>
     </div>

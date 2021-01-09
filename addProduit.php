@@ -7,6 +7,7 @@ if(empty($_POST))
 
     $query=$pdo->query('SELECT id,nom FROM categories');
     $categories=$query->fetchAll(PDO::FETCH_ASSOC);
+    
     include 'addProduit.phtml';
 
 }
@@ -15,7 +16,7 @@ else{
      include "conx.php";  
     
 
-       $images=$_FILES['image']['name'];
+        $images=$_FILES['image']['name'];
         $type=$_FILES['image']['type'];
         $size=$_FILES['image']['size'];
         $temp=$_FILES['image']['tmp_name'];

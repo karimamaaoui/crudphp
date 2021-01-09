@@ -1,12 +1,15 @@
 <!Doctype html>
 <html>
 <head>
-    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1" name="viewport" >
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
+    <script src="ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script> 
+    <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>   
+    <script src="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
     <style>
     @import url('https://fonts.googleapis.com/css?family=Poppins:400,500,600,700&display=swap');
-
+    
         body
         {
             font-family:'Poppins',sans-serif;
@@ -17,14 +20,21 @@
         color:white;
         text-transform:uppercase;
         } 
-    
+        .default:hover {
+            background: #ff9800;
+            color: white;
+        }
+        input[type="checkbox"] {
+		transform:scale(1.5, 1.5);
+    }
 
     </style>
+
 </head>
 <body>
 <?php require_once("menu.php") ?>
 
-<?php 
+<?php  
     if (isset($_SESSION['message'])): ?>
         <div class="alert alert-<?=$_SESSION['msg'] ?>"> 
         <?php
@@ -38,10 +48,9 @@
 
    <h1>Liste des Produits </h1>
     <br>
-   <table class="table table-striped table-hover table-bordered" >
+   <table class="table table-striped table-hover table-bordered" id="prod">
         <thead class="bg-dark text-white">
         
-        <th scope="col">cochez</th>
         
         <th scope="col"> Reference Produit </th> 
         <th scope="col">Nom Produit </th>
@@ -49,68 +58,80 @@
         <th scope="col">Prix </th>
         <th scope="col">Categories</th>
         <th scope="col">Image</th>
-        <th scope="col"></th>
-        <th scope="col"></th>
+        <th scope="col">Suppression</th>
+        <th scope="col">Modification</th>
         
         </thead>
         <tbody>
+        <div>
+          
+        </div>
         
-
-            <?php foreach ($produits as $produit):?>
-            <tr>
-            <td scopte="row"> <input type="checkbox" name="deleteMulti[]">
-            </td>
-                <td scope="row">
-                    <?= $produit['id']?>
-                </td>
-                <td scope="row">
-                    <?= $produit['nom']?>
-                </td>
-                <td scope="row">
-                    <?= $produit['description']?>
-                </td scope="row">
-                
-                <td scope="row">
-                    <?= $produit['prix']?>
-                </td>
-                
-                <td scope="row">
-                    <?= $produit['nom_categorie']?>
-                </td>
-                
-                
-                </td scope="row">
-              
-               
-                <td scope="row">
-                    <?php  echo '<img src="upload/'.$produit['image'].'"width="100px;" height="100px; alt="image">';?>
+            <?php 
+            require_once 'conx.php';
+            ?>
             
-                </td>
-                </td scope="row">
                 
-                </td scope="row">
-                </td scope="row">
-                
-                
-              <td><button type="button" class="btn-danger btn"><a onclick="return confirm('Are you sure you want to delete this')"  href="delete.php?id=<?=$produit['id']?>" class="text-white">Supprimer</a> </button></td>
-              
-              <td><button type="button" class="btn-primary btn"><a href="editerProd.php?id=<?php echo $produit['id'];?>" class="text-white">Editer</a> </button>
-             
-              </td>
-              
+                   <?php foreach ($produits as $produit):?>
+                        <td scope="row">
+                            <?= $produit['id']?>
+                        </td>
+                        <td scope="row">
+                            <?= $produit['nom']?>
+                        </td>
+                        <td scope="row">
+                            <?= $produit['description']?>
+                        </td scope="row">
+                        
+                        <td scope="row">
+                            <?= $produit['prix']?>
+                        </td>
+                        
+                        <td scope="row">
+                            <?= $produit['nom_categorie']?>
+                        </td>
+                        
+                        
+                        </td scope="row">
+                    
+                    
+                        <td scope="row">
+                            <?php  echo '<img src="upload/'.$produit['image'].'"width="100px;" height="100px; alt="image">';?>
+                    
+                        </td>
+                        </td scope="row">
+                        
+                        </td scope="row">
+                        </td scope="row">
+                        
+                        
+                    <td><button type="button" class="btn-danger btn"><a onclick="return confirm('Are you sure you want to delete this')"  href="delete.php?id=<?=$produit['id']?>" class="text-white">Supprimer</a> </button></td>
+                    
+                    <td><button type="button" class="btn-primary btn"><a href="editerProd.php?id=<?php echo $produit['id'];?>" class="text-white">Editer</a> </button>
+                    
+                    </td>
+                    
 
 
-            </tr>
-            <?php endforeach; ?>
-
+                    </tr>
+                    <?php endforeach; ?>
+                    
+            
+            
             </tbody>
 
     </table>
+    <script>
+
+$(document).ready(function() {
+    $('#prod').DataTable();
+} );
+
+</script>
 
     <div>
     </div>
 
-            
               
 
 </body>

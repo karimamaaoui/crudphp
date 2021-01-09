@@ -18,36 +18,37 @@ session_start();
             $description=$_POST['description'];
             $prix=$_POST['prix'];
             $categorie=$_POST['categorie'];
-            $edit_images=$_FILES['fileimage']['name'];
-            var_dump($edit_images);
-            $tmp=$_FILES['fileimage']['tmp_name'];
-            $imageSize=$_FILES['fileimage']['size'];
-            $folder='upload/';
-            $imgExt=strtolower(pathinfo($edit_images,PATHINFO_EXTENSION));
-            $valid_extensions=rand(1000,1000000).".".$edit_images;
-            move_uploaded_file($tmp, $folder.$edit_images); 
+      
+            $images=$_FILES['fileimage']['name'];
+            $type=$_FILES['fileimage']['type'];
+            $size=$_FILES['fileimage']['size'];
+            $temp=$_FILES['fileimage']['tmp_name'];
+            var_dump($temp);
+            $folder ="upload/";
+            $path=$folder.$images;
+            $allowed=array('jpeg','png' ,'jpg'); $images=$_FILES['fileimage']['name']; 
 
-
-            
-            
-            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            $sql1="UPDATE `produits` SET `nom`='$nom',`description`='$description',`prix`=$prix,`image`='$edit_images',`categories_id`=? WHERE id=$id;";
-            $q = $pdo->prepare($sql1);
-            var_dump($q);
-
-              if ($q)
-            {
-                move_uploaded_file($tmp, $folder.$edit_images); 
+            $ext=pathinfo($images, PATHINFO_EXTENSION);
                 
+            if (file_exists($path)) {
+                $images=rand().$images;
+                $path=$folder.$images;
             }
-        
-                $_SESSION['message']="mise  a jour  ";
-        
+            if(!in_array($ext,$allowed) ) 
+                
+            {    
+                echo" Sorry, only JPG, JPEG, PNG & GIF  files are allowed.";
             
-        //header("location: ListeProduit.php");
-        //exit();
-    
-        }}
+            }
+                
+            else{ 
+                move_uploaded_file( $_FILES['fileimage'] ['tmp_name'], $path); 
+                $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                $query=$pdo->prepare("UPDATE `produits` SET `nom`='$nom',`description`='$description',`prix`=$prix,`image`='$images' WHERE id=$id;");
+                $query->execute(array($_POST['nom'],$_POST['description'],$_POST['prix'], $images,$_POST['categorie']));
+                header("Location:ListeProduit.php");
+    }
+}}
     else
     {
         
@@ -62,11 +63,6 @@ session_start();
         $edit_images=$produit['image'];
         
         }
-
-    
-
-
-
 
 include "editerProd.phtml";
         

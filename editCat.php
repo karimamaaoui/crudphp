@@ -12,7 +12,6 @@ session_start();
     {
         $nom=$_POST['nom'];
         $description=$_POST['description'];
-        //$picture=$_FILES['picture'];
         $valid=true;
        
         //Update DATA
